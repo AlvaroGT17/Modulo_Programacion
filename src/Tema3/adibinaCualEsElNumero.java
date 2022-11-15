@@ -5,19 +5,39 @@
 
 package Tema3;
 
+import java.util.Scanner;
+
 public class adibinaCualEsElNumero {
 
 	public static void main(String[] args) {
 
-		int numSec = (int) Math.random() * 100;
-		int num=0;
-		
-		while (num!=numSec || num==-1) {
-		
-			
-			
+		Scanner teclado = new Scanner(System.in);
+
+		int numSec = (int) (Math.random() * 100);
+		System.out.println(numSec);
+		int num = 0;
+		int cont = 0;
+
+		while (num != numSec || num == -1) {
+
+			System.out.println("Ingrese un número para intentar adibinar el número secreto: ");
+			num = teclado.nextInt();
+
+			if (num > numSec) {
+				System.out.println("El número introducido es mayor al buscado");
+			} else if (num < numSec) {
+				System.out.println("El número introducido es menor al buscado");
+			}
+
+			cont++;
+
 		}
 
+		if (num == numSec) {
+			System.out.println("Enorabuena has gando, lo conseguistes en " + cont + " intentos.");
+		} else if (num == -1) {
+			System.out.println("Lamento tu decision de rendirte");
+		}
 	}
 
 }
