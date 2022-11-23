@@ -18,41 +18,46 @@ public class Ejercicio1_pag18 {
 
 		double nmax=0;
 		double nmin=9999;
+		String nommax="";
+		String nommin="";
 		
 		for (int i = 1; i <= 5; i++) {
 
 			String nombre = leernombre();
 			int nAsignaturas = asignaturas();
+			if ( nAsignaturas < 1 || nAsignaturas > 10) {
+				
+				nAsignaturas= asignaturas();
+			}
+			
 			double suma=0;
 			
 			for(int j=1; j<=nAsignaturas; j++) {
 				
 				String nomasigna = leernombreasig();
 				double nota = leernota();
-				if ( nota < 1 || nota > 10) {
-					
-					nota= leernota();
-				}
-				
-				System.out.println("====================================================");
-				System.out.println("El nombre del alumno es:" + nombre);
-				System.out.println("\tLa " + j + "º asignatura es:" + nomasigna);
+												
 				suma= suma+nota;
 				
 				
 			}
 			
 			double notaMedia = suma/nAsignaturas;
-			System.out.println("\tLa nota media del alumno es: " + notaMedia);
+			System.out.println("\t La nota media del alumno es: " + notaMedia);
 			
 			if (nmax < notaMedia) {
 				nmax=notaMedia;
+				nommax=nombre;
 			}
 			
 			if (nmin> notaMedia) {
 				nmin=notaMedia;
+				nommin=nombre;
 			}
-
+			
+			System.out.println(" El alumno con mayor nota media es: " + nommax + "con una nota de: " + notaMedia);
+			System.out.println(" El alumno con mayor nota media es: " + nommin + "con una nota de: " + notaMedia);
+			
 		}
 
 	}
@@ -60,24 +65,33 @@ public class Ejercicio1_pag18 {
 	private static double leernota() {
 		
 			Scanner teclado = new Scanner(System.in);
-			System.out.print("Ingrese la nota del alumno: ");
-			double num = teclado.nextInt();
-			teclado.nextLine();
+			double num=0;
+			do {
+			System.out.printf("\t Ingrese la nota del alumno: ");
+			num = teclado.nextInt();
+			teclado.nextLine();}
+			while (num < 1 || num > 10);
 			return num;
 		}
 	
 	private static int asignaturas() {
+		
 		Scanner teclado = new Scanner(System.in);
-		System.out.print("Ingrese el numero de asignaturas: ");
-		int num = teclado.nextInt();
-		teclado.nextLine();
+		int num=0;
+		do {
+		System.out.printf("\t Ingrese el numero de asignaturas: ");
+		num = teclado.nextInt();
+		teclado.nextLine();}
+		while (num < 1 || num > 6);
+		
 		return num;
+		
 	}
 
 	private static String leernombreasig() {
 
 		Scanner teclado = new Scanner(System.in);
-		System.out.print("Ingrese el nombre de la asignatura: ");
+		System.out.printf("\t Ingrese el nombre de la asignatura: ");
 		String nombre = teclado.nextLine();
 		return nombre;
 	}
@@ -85,6 +99,7 @@ public class Ejercicio1_pag18 {
 	private static String leernombre() {
 
 		Scanner teclado = new Scanner(System.in);
+		System.out.println("==============================================================");
 		System.out.print("Ingrese el nombre del alumno: ");
 		String nombre = teclado.nextLine();
 		return nombre;
