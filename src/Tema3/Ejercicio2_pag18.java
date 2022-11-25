@@ -21,7 +21,7 @@ public class Ejercicio2_pag18 {
 		
 		// Ingresamos el numero de alumnos----------------------------------------------------------
 		
-		System.out.println("Ingrese el número de alumnos a ebaluar");
+		System.out.println("Ingrese el número de alumnos a evaluar: ");
 		int nalum = leernum();
 		
 		// iniciamos el bucle principal--------------------------------------------------------------
@@ -31,6 +31,7 @@ public class Ejercicio2_pag18 {
 			System.out.println("==============================================================");
 			System.out.print("Ingrese el nombre del alumno: ");
 			String nombre = leernombre();
+			System.out.print("Ingrese el numero de asignaturas: ");
 			int nAsignaturas = leernum();
 			
 			// este do while se encarga que la carga por teclado del numero de asignaturas sea correcto.
