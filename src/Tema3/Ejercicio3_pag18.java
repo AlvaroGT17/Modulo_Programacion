@@ -1,5 +1,5 @@
-/*Leer datos de departamentos en un proceso repetitivo hasta que el número de departamento leído sea menor o igual 0, 
-  los datos a leer son:
+/*Leer datos de departamentos en un proceso repetitivo hasta que el número de departamento leído sea    menor o igual 0, los datos a leer son:
+	
 	Nº DE DEPARTAMENTO, NOMBRE, LOCALIDAD y Nº DE EMPLEADOS QUE TIENE.
 	
   A continuación leer los datos de sus empleados (tantos como empleados tenga), los datos son:
@@ -19,58 +19,101 @@ import java.util.Scanner;
 public class Ejercicio3_pag18 {
 
 	public static void main(String[] args) {
-		
+
 		Scanner teclado = new Scanner(System.in);
-		
-		String depmasempleado = "";
+
+		System.out.print("Ingrese el numero de departamentos que tiene la empresa: ");
+		int numerodepartamentos = leerint();
+		System.out.println("");
+
 		int contador = 0;
-		double calsalario=0;
-		double salariomax=0;
-		
-		do {
-			
-			System.out.print("========DATOS============================================");
-			System.out.print("Ingrese el nº de departamento: ");
-			int ndepartamento = leerint();
-			System.out.print("Ingrese el nombre de la localidad: ");
-			String localidad = leerstring();
-			System.out.print("Ingrese el nº de empleados: ");
-			int nempleados = leerint();
-			
-			int numEmple;
-			String apellidos;
-			String oficio;
-			double salario;
-			
-			for (int i=1; i<=nempleados; i++) {
-				System.out.print("Ingrese el Oficio: ");
-				oficio = leerstring();
-				System.out.print("Ingrese el salario: ");
-				salario = leerdouble();
-				System.out.print("Ingrese el nº de empleado: ");
-				numEmple= leerint();
+		int maxiempleado = 0;
+		double maxisalario = 0;
+		double salariototal = 0;
+		double salariomedio = 0;
+		String maxiapellido = "";
+		String maxidepartamento = "";
+
+		if (numerodepartamentos > 0) {
+
+			do {
+
+				System.out.println("=================Datos de la empresa=================================\n ");
 				
-				calsalario= calsalario+salario;
+				int iddepartamento = contador+1;
+				System.out.println("\tEl numero de departamento es: " + iddepartamento);
 				
-				if (salario>salariomax) {
-					salariomax=salario;
+				System.out.print("\tIngrese el nombre que tiene el departamento: ");
+				String nombredepartamento = leerstring();
+
+				System.out.print("\tIngrese la localidad donde esta el departamento: ");
+				String localidaddepartamentos = leerstring();
+
+				System.out.print("\tIngrese el numero de empleados que tiene el departamento: ");
+				int numeroempleados = leerint();
+
+				for (int i = 0; i < numeroempleados; i++) {
+
+					System.out.println("\n=================Datos del trabajador================================= ");
+					System.out.println("\n");
+
+					System.out.print("\tIngrese el numero del trabajador: ");
+					int numerotrabajador = leerint();
+
+					System.out.print("\tIngrese el apellido del trabajador: ");
+					String apellido = leerstring();
+
+					System.out.print("\tIngrese el oficio del trabajador: ");
+					String oficio = leerstring();
+
+					System.out.println("\tIngrese el salario del trabajador : ");
+					double salario = leerdouble();
+
+					if (maxisalario < salario) {
+						maxisalario = salario;
+						maxiapellido = apellido;
+					}
+
+					if (maxiempleado < numeroempleados) {
+						maxiempleado = numeroempleados;
+						maxidepartamento = nombredepartamento;
+					}
+
+					salariototal = salariototal + salario;
+					salariomedio = salariototal / numeroempleados;
+
 				}
-			}
+
+				contador++;
+				numerodepartamentos--;
+				
+				System.out.println("========== Datos requeridos ===================================");
+				System.out.println("\n");
+
+				System.out.println("\tEl salario medio del departamento " + iddepartamento + " es: " + salariomedio);
+				System.out.println("\tEl empleado con mas suseldo es: " + maxiapellido + "\n");
+
+			} while (numerodepartamentos > 0);
 			
-			
-			
-			
-		} while (ndepartamento>0);
+			System.out.println("\tEl departamento con mas empleados es: " + maxidepartamento + " con un total de: " + maxiempleado + " empleados");
+			System.out.println("\tEl numero de departamentos introducidos es: " + contador);
+
+		} else {
+
+			System.out.println(" ERROR !!! Número de departamentos insuficientes para ejecutar programa.");
+
+		}
+
+		teclado.close();
 
 	}
-	
+
 	private static double leerdouble() {
 
 		Scanner teclado = new Scanner(System.in);
 		double num = 0;
 		num = teclado.nextInt();
 		teclado.nextLine();
-		
 		return num;
 	}
 
@@ -79,7 +122,6 @@ public class Ejercicio3_pag18 {
 		Scanner teclado = new Scanner(System.in);
 		int num = teclado.nextInt();
 		teclado.nextLine();
-
 		return num;
 
 	}
