@@ -30,40 +30,38 @@ package Tema3;
 
 import java.util.Scanner;
 
-import Tema1y4.LeerDosNumeros;
-
 public class Ejercicio12_pag20 {
 
 	public static void main(String[] args) {
-
+		
 		int num = leernum();
 		dibujarserie(num);
-
+		
 	}
 
 	private static void dibujarserie(int num) {
 
 		char letra = 'a';
-		for (int i = 1; i <= num; i++) {
-			System.out.print(" ");
+		int y = 1;
+		
+		for (int x = 1, contador = 1, contadorvuelta = 0; x <= num; x++, contador++) {
 			letra = 'a';
-			for (int x=1;x<=num;x++) {
-				for (int j = 1; j <= 5; j++, letra++) {
-					System.out.print(letra);
-					
-				}
-				
-				for (int j = 1; j <= i; j++) {
-					if(j>1 && j==i) {
-						System.out.print(x);
-					}
-				}
-				
+			if (contador >= 6) {
+				contador = 1;
+				contadorvuelta++;
 			}
+			for (y = 1; y <= contador; y++, letra++) {
+				System.out.print(letra);
+			}
+
+			if (contadorvuelta >= 1) {
+				System.out.print(contadorvuelta);
+			}
+			System.out.print(" ");
+
 		}
-			
+
 	}
-	
 
 	private static int leernum() {
 
@@ -72,7 +70,7 @@ public class Ejercicio12_pag20 {
 		int num;
 
 		do {
-			System.out.print("Ingrese el numero que quiere que se repita el bucble: ");
+			System.out.print("Ingrese el numero que quiere que se repita el bucle: ");
 			num = teclado.nextInt();
 		} while (num < 0);
 
